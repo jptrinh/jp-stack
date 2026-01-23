@@ -7,13 +7,15 @@ export default {
         customSettingsPropertiesOrder: [
             "group",
             "items",
-            "direction",
-            "wrap",
-            "gap",
             "sortable",
             "readonly",
             "customDragHandle",
             ["handleClass"],
+        ],
+        customStylePropertiesOrder: [
+            "direction",
+            "wrap",
+            "gap",
         ]
     },
     states: ['readonly'],
@@ -93,7 +95,7 @@ export default {
             },
             bindable: true,
             defaultValue: "vertical",
-            section: "settings",
+            section: "style",
         },
         wrap: {
             label: {
@@ -102,7 +104,7 @@ export default {
             type: "OnOff",
             bindable: true,
             defaultValue: false,
-            section: "settings",
+            section: "style",
         },
         gap: {
             label: {
@@ -114,7 +116,7 @@ export default {
             },
             bindable: true,
             defaultValue: 0,
-            section: "settings",
+            section: "style",
         },
         itemElement: {
             hidden: true,
