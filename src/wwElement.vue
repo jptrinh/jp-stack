@@ -8,6 +8,7 @@
         :handle="handle?.length ? `.${handle}` : null"
         :disabled="isEditing || isReadonly"
         :class="['draggable-container', `direction-${direction}`]"
+        :style="{ gap: gap, flexWrap: wrap ? 'wrap' : 'nowrap' }"
         @change="onChange"
         @start="setDrag(true)"
         @end="setDrag(false)"
@@ -142,6 +143,13 @@ export default {
         direction() {
             return this.wwElementState.props.direction || this.content.direction || "vertical";
         },
+        gap() {
+            const value = this.wwElementState.props.gap ?? this.content.gap ?? 0;
+            return `${value}px`;
+        },
+        wrap() {
+            return this.wwElementState.props.wrap ?? this.content.wrap ?? false;
+        },
     },
     watch: {
         items: {
@@ -172,7 +180,7 @@ export default {
 
 <style scoped>
 .draggable-container {
-    display: flex;
+    display: flex !important;
 }
 .direction-vertical {
     flex-direction: column;
