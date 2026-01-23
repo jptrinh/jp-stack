@@ -11,9 +11,6 @@
         @start="setDrag(true)"
         @end="setDrag(false)"
     >
-        <template #header>
-            <wwLayout path="headerElement"></wwLayout>
-        </template>
         <template #item="{ element, index: itemIndex }">
             <div class="draggable-item">
                 <wwLayoutItemContext
@@ -26,9 +23,6 @@
                     <wwLayout path="itemElement"></wwLayout>
                 </wwLayoutItemContext>
             </div>
-        </template>
-        <template #footer>
-            <wwLayout path="footerElement"></wwLayout>
         </template>
     </draggable>
 </template>
