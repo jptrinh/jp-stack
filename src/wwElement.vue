@@ -7,6 +7,7 @@
         :sort="sortable"
         :handle="handle?.length ? `.${handle}` : null"
         :disabled="isEditing || isReadonly"
+        :class="['draggable-container', `direction-${direction}`]"
         @change="onChange"
         @start="setDrag(true)"
         @end="setDrag(false)"
@@ -138,6 +139,9 @@ export default {
             // Ensure to return a boolean as vuedraggable interpret undefined as true
             return !!(this.wwElementState.props.readonly || this.content.readonly);
         },
+        direction() {
+            return this.wwElementState.props.direction || this.content.direction || "vertical";
+        },
     },
     watch: {
         items: {
@@ -167,6 +171,15 @@ export default {
 </script>
 
 <style scoped>
+.draggable-container {
+    display: flex;
+}
+.direction-vertical {
+    flex-direction: column;
+}
+.direction-horizontal {
+    flex-direction: row;
+}
 /** FIX POINTER-EVENTS: ALL BREAKING DRAGGABLE ON MOBILE/TABLET (TOUCH MODE) */
 .draggable-item :deep(.ww-layout) {
     pointer-events: unset !important;
