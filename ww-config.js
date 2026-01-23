@@ -7,6 +7,9 @@ export default {
         customSettingsPropertiesOrder: [
             "group",
             "items",
+            "direction",
+            "wrap",
+            "gap",
             "sortable",
             "readonly",
             "customDragHandle",
@@ -77,25 +80,47 @@ export default {
             defaultValue: true,
             section: "settings",
         },
+        direction: {
+            label: {
+                en: "Direction",
+            },
+            type: "TextSelect",
+            options: {
+                options: [
+                    { value: "vertical", label: { en: "Vertical" } },
+                    { value: "horizontal", label: { en: "Horizontal" } },
+                ],
+            },
+            bindable: true,
+            defaultValue: "vertical",
+            section: "settings",
+        },
+        wrap: {
+            label: {
+                en: "Wrap",
+            },
+            type: "OnOff",
+            bindable: true,
+            defaultValue: false,
+            section: "settings",
+        },
+        gap: {
+            label: {
+                en: "Gap",
+            },
+            type: "Number",
+            options: {
+                min: 0,
+            },
+            bindable: true,
+            defaultValue: 0,
+            section: "settings",
+        },
         itemElement: {
             hidden: true,
             defaultValue: [{ isWwObject: true, type: "ww-flexbox" }],
             navigator: {
                 group: "Item",
-            },
-        },
-        headerElement: {
-            hidden: true,
-            defaultValue: [{ isWwObject: true, type: "ww-text" }],
-            navigator: {
-                group: "Header",
-            },
-        },
-        footerElement: {
-            hidden: true,
-            defaultValue: [],
-            navigator: {
-                group: "Footer",
             },
         },
         readonly: {

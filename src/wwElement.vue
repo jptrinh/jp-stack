@@ -7,13 +7,12 @@
         :sort="sortable"
         :handle="handle?.length ? `.${handle}` : null"
         :disabled="isEditing || isReadonly"
+        :class="['draggable-container', `direction-${direction}`]"
+        :style="{ gap: gap, flexWrap: wrap ? 'wrap' : 'nowrap' }"
         @change="onChange"
         @start="setDrag(true)"
         @end="setDrag(false)"
     >
-        <template #header>
-            <wwLayout path="headerElement"></wwLayout>
-        </template>
         <template #item="{ element, index: itemIndex }">
             <div class="draggable-item">
                 <wwLayoutItemContext
@@ -26,9 +25,6 @@
                     <wwLayout path="itemElement"></wwLayout>
                 </wwLayoutItemContext>
             </div>
-        </template>
-        <template #footer>
-            <wwLayout path="footerElement"></wwLayout>
         </template>
     </draggable>
 </template>
@@ -144,6 +140,16 @@ export default {
             // Ensure to return a boolean as vuedraggable interpret undefined as true
             return !!(this.wwElementState.props.readonly || this.content.readonly);
         },
+        direction() {
+            return this.wwElementState.props.direction || this.content.direction || "vertical";
+        },
+        gap() {
+            const value = this.wwElementState.props.gap ?? this.content.gap ?? 0;
+            return `${value}px`;
+        },
+        wrap() {
+            return this.wwElementState.props.wrap ?? this.content.wrap ?? false;
+        },
     },
     watch: {
         items: {
@@ -173,6 +179,15 @@ export default {
 </script>
 
 <style scoped>
+.draggable-container {
+    display: flex !important;
+}
+.direction-vertical {
+    flex-direction: column;
+}
+.direction-horizontal {
+    flex-direction: row;
+}
 /** FIX POINTER-EVENTS: ALL BREAKING DRAGGABLE ON MOBILE/TABLET (TOUCH MODE) */
 .draggable-item :deep(.ww-layout) {
     pointer-events: unset !important;
