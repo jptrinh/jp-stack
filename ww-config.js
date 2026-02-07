@@ -16,6 +16,8 @@ export default {
             "direction",
             "wrap",
             "gap",
+            "showHeader",
+            "showFooter",
         ]
     },
     states: ['readonly'],
@@ -170,6 +172,46 @@ export default {
             },
             /* wwEditor:end */
             hidden: (content, sidePanelContent, boundProps, wwProps) => !content.customDragHandle || wwProps?.handle?.length,
+        },
+        showHeader: {
+            label: { en: "Header" },
+            type: "OnOff",
+            section: "style",
+            defaultValue: false,
+            bindable: true,
+            /* wwEditor:start */
+            bindingValidation: {
+                type: "boolean",
+                tooltip: "A boolean to show/hide the header dropzone: `true | false`",
+            },
+            /* wwEditor:end */
+        },
+        headerContent: {
+            hidden: true,
+            defaultValue: [],
+            navigator: {
+                group: "Header",
+            },
+        },
+        showFooter: {
+            label: { en: "Footer" },
+            type: "OnOff",
+            section: "style",
+            defaultValue: false,
+            bindable: true,
+            /* wwEditor:start */
+            bindingValidation: {
+                type: "boolean",
+                tooltip: "A boolean to show/hide the footer dropzone: `true | false`",
+            },
+            /* wwEditor:end */
+        },
+        footerContent: {
+            hidden: true,
+            defaultValue: [],
+            navigator: {
+                group: "Footer",
+            },
         },
     },
 };
