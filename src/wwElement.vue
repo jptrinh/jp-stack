@@ -13,6 +13,9 @@
         @start="setDrag(true)"
         @end="setDrag(false)"
     >
+        <template v-if="content?.showHeader" #header>
+            <wwLayout path="headerContent" />
+        </template>
         <template #item="{ element, index: itemIndex }">
             <div class="draggable-item">
                 <wwLayoutItemContext
@@ -25,6 +28,9 @@
                     <wwLayout path="itemElement"></wwLayout>
                 </wwLayoutItemContext>
             </div>
+        </template>
+        <template v-if="content?.showFooter" #footer>
+            <wwLayout path="footerContent" />
         </template>
     </draggable>
 </template>
